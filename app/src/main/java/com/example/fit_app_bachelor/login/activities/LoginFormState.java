@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.ui.login;
+package com.example.fit_app_bachelor.login.activities;
 
 import androidx.annotation.Nullable;
 

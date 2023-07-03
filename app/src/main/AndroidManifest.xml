@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Fit_app_bachelor"
         tools:targetApi="31">
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".login.activities.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" >
             <intent-filter>

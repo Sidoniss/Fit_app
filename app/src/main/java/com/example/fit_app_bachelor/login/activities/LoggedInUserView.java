@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.ui.login;
+package com.example.fit_app_bachelor.login.activities;
 
 /**
  * Class exposing authenticated user details to the UI.

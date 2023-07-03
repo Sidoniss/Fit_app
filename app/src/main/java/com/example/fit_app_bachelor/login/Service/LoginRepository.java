@@ -1,6 +1,6 @@
-package com.example.fit_app_bachelor.data.LoginService;
+package com.example.fit_app_bachelor.login.Service;
 
-import com.example.fit_app_bachelor.data.model.LoggedInUser;
+import com.example.fit_app_bachelor.login.model.User;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -10,7 +10,6 @@ public class LoginRepository {
 
     private static volatile LoginRepository instance;
     private LoginDataSource dataSource;
-    private LoggedInUser user = null;
 
     private LoginRepository(LoginDataSource dataSource) {
         this.dataSource = dataSource;
@@ -23,24 +22,15 @@ public class LoginRepository {
         return instance;
     }
 
-    public boolean isLoggedIn() {
-        return user != null;
-    }
+    /*public boolean isLoggedIn() {
+        return dataSource.isLoggedIn();
+    }*/
 
     public void logout() {
-        user = null;
         dataSource.logout();
     }
 
-    private void setLoggedInUser(LoggedInUser user) {
-        this.user = user;
-    }
-
-    public Result<LoggedInUser> login(String email, String password) {
-        Result<LoggedInUser> result = dataSource.login(email, password);
-        if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
-        }
-        return result;
+    public Result<User> login(String email, String password) {
+        return dataSource.login(email,password);
     }
 }

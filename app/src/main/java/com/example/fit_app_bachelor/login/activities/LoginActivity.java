@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.ui.login;
+package com.example.fit_app_bachelor.login.activities;
 
 import android.app.Activity;
 
@@ -25,13 +25,17 @@ import android.widget.Toast;
 
 import com.example.fit_app_bachelor.MainActivity;
 import com.example.fit_app_bachelor.R;
-import com.example.fit_app_bachelor.data.LoginService.UserDAO;
 import com.example.fit_app_bachelor.databinding.ActivityLoginBinding;
+import com.example.fit_app_bachelor.login.Service.ApiService;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+    private ApiService apiService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        UserDAO userDAO= new UserDAO();
+        apiService = createApiService();
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory(userDAO))
-                .get(LoginViewModel.class);
+        LoginViewModelFactory factory = new LoginViewModelFactory(apiService);
+
+        loginViewModel = new ViewModelProvider(this, factory).get(LoginViewModel.class);
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
@@ -125,6 +130,15 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+    }
+
+    private ApiService createApiService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://localhost:8090/api/") // Podaj bazowy URL serwera API
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(ApiService.class);
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

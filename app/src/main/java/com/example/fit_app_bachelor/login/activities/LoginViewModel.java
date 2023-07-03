@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.ui.login;
+package com.example.fit_app_bachelor.login.activities;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.example.fit_app_bachelor.data.LoginService.LoginRepository;
-import com.example.fit_app_bachelor.data.LoginService.Result;
-import com.example.fit_app_bachelor.data.model.LoggedInUser;
+import com.example.fit_app_bachelor.login.Service.LoginDataSource;
+import com.example.fit_app_bachelor.login.Service.LoginRepository;
+import com.example.fit_app_bachelor.login.Service.Result;
+import com.example.fit_app_bachelor.login.model.User;
 import com.example.fit_app_bachelor.R;
 
 public class LoginViewModel extends ViewModel {
@@ -31,10 +32,10 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        Result<User> result = loginRepository.login(username, password);
 
         if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
+            User data = ((Result.Success<User>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getEmail())));
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
