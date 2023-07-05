@@ -1,5 +1,7 @@
 package com.example.fit_app_bachelor.login.Service;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.fit_app_bachelor.login.model.User;
 
 /**
@@ -30,7 +32,7 @@ public class LoginRepository {
         dataSource.logout();
     }
 
-    public Result<User> login(String email, String password) {
+    public LiveData<Result<User>> login(String email, String password) {
         return dataSource.login(email,password);
     }
 }

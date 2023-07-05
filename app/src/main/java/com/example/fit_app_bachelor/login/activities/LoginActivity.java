@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ApiService createApiService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8090/api/") // Podaj bazowy URL serwera API
+                .baseUrl("http://10.0.2.2:8090/api/auth/") // Podaj bazowy URL serwera API
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

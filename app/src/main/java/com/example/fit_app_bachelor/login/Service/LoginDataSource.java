@@ -1,5 +1,7 @@
 package com.example.fit_app_bachelor.login.Service;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fit_app_bachelor.login.activities.LoginViewModel;
@@ -21,13 +23,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class LoginDataSource {
     private ApiService apiService;
+    private MutableLiveData<Result<User>> resultMutableLiveData;
 
     public LoginDataSource(ApiService apiService) {
         this.apiService = apiService;
+        this.resultMutableLiveData = new MutableLiveData<>();
     }
 
-    public Result<User> login(String username, String password) {
-        final Result<User>[] result = new Result[]{null};
+    public LiveData<Result<User>> login(String username, String password) {
 
         LoginRequest request = new LoginRequest(username,password);
 
@@ -39,28 +42,23 @@ public class LoginDataSource {
                     LoginResponse loginResponse = response.body();
                     if(loginResponse != null) {
                         User user = loginResponse.getUser();
-                        result[0] = new Result.Error(new IOException("Invalid login data!"));
+                        resultMutableLiveData.postValue(new Result.Success<>(user));
                     } else {
-                        result[0] = new Result.Error(new IOException("Invalid login data!"));
+                        resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
                     }
+                }
+                else {
+                    resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                result[0] = new Result.Error(new IOException("Error logging in!", t));
+                resultMutableLiveData.postValue(new Result.Error(new IOException("Error logging in!")));
             }
         });
 
-        try {
-            synchronized (result) {
-                result.wait();
-            }
-        } catch (InterruptedException e ) {
-            e.printStackTrace();
-        }
-
-        return result[0];
+        return resultMutableLiveData;
     }
 
     public void logout() {
