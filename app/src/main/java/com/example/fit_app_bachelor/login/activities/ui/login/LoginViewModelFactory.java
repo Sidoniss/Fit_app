@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.login.activities;
+package com.example.fit_app_bachelor.login.activities.ui.login;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;

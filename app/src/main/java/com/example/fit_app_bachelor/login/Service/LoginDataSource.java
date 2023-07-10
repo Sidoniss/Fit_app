@@ -2,12 +2,10 @@ package com.example.fit_app_bachelor.login.Service;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.fit_app_bachelor.login.activities.LoginViewModel;
-import com.example.fit_app_bachelor.login.activities.LoginViewModelFactory;
 import com.example.fit_app_bachelor.login.model.LoginRequest;
 import com.example.fit_app_bachelor.login.model.LoginResponse;
+import com.example.fit_app_bachelor.login.model.RegisterRequest;
 import com.example.fit_app_bachelor.login.model.User;
 
 import java.io.IOException;
@@ -15,8 +13,6 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
@@ -41,7 +37,7 @@ public class LoginDataSource {
                 if(response.isSuccessful()) {
                     LoginResponse loginResponse = response.body();
                     if(loginResponse != null) {
-                        User user = loginResponse.getUser();
+                        User user = new User(loginResponse.getEmail());
                         resultMutableLiveData.postValue(new Result.Success<>(user));
                     } else {
                         resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
@@ -55,6 +51,38 @@ public class LoginDataSource {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 resultMutableLiveData.postValue(new Result.Error(new IOException("Error logging in!")));
+            }
+        });
+
+        return resultMutableLiveData;
+    }
+
+    public LiveData<Result<User>> register(String username, String password, String name) {
+
+        RegisterRequest request = new RegisterRequest(username,password,name);
+
+        Call<LoginResponse> call = apiService.register(request);
+
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if(response.isSuccessful()) {
+                    LoginResponse loginResponse = response.body();
+                    if(loginResponse != null) {
+                        User user = new User(loginResponse.getEmail());
+                        resultMutableLiveData.postValue(new Result.Success<>(user));
+                    } else {
+                        resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid register data!")));
+                    }
+                }
+                else {
+                    resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid register data!")));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                resultMutableLiveData.postValue(new Result.Error(new IOException("Registration error!")));
             }
         });
 

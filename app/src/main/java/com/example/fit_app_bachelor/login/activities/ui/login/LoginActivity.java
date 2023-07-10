@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.login.activities;
+package com.example.fit_app_bachelor.login.activities.ui.login;
 
 import android.app.Activity;
 
@@ -27,6 +27,7 @@ import com.example.fit_app_bachelor.MainActivity;
 import com.example.fit_app_bachelor.R;
 import com.example.fit_app_bachelor.databinding.ActivityLoginBinding;
 import com.example.fit_app_bachelor.login.Service.ApiService;
+import com.example.fit_app_bachelor.login.activities.ui.register.RegisterActivity;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+        final TextView registerTextView = binding.registerTextView;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -128,6 +130,15 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+            }
+        });
+
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

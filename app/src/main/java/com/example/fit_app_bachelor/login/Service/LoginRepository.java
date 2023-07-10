@@ -35,4 +35,8 @@ public class LoginRepository {
     public LiveData<Result<User>> login(String email, String password) {
         return dataSource.login(email,password);
     }
+
+    public LiveData<Result<User>> register(String email, String password,String name) {
+        return dataSource.register(email,password,name);
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.fit_app_bachelor.login.activities;
+package com.example.fit_app_bachelor.login.activities.ui.login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.example.fit_app_bachelor.login.Service.LoginDataSource;
 import com.example.fit_app_bachelor.login.Service.LoginRepository;
 import com.example.fit_app_bachelor.login.Service.Result;
 import com.example.fit_app_bachelor.login.model.User;

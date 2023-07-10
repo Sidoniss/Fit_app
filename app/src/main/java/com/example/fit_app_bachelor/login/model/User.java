@@ -5,21 +5,14 @@ package com.example.fit_app_bachelor.login.model;
  */
 public class User {
 
-    private String userId;
+
     private String email;
 
-    public User(String userId, String email) {
-        this.userId = userId;
+    public User(String email) {
+
         this.email = email;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getEmail() {
         return email;

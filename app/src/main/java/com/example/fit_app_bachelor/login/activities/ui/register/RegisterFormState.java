@@ -1,26 +1,27 @@
-package com.example.fit_app_bachelor.login.activities;
+package com.example.fit_app_bachelor.login.activities.ui.register;
 
 import androidx.annotation.Nullable;
 
-/**
- * Data validation state of the login form.
- */
-class LoginFormState {
+public class RegisterFormState {
     @Nullable
     private Integer usernameError;
     @Nullable
     private Integer passwordError;
+    @Nullable
+    private Integer nameError;
     private boolean isDataValid;
 
-    LoginFormState(@Nullable Integer usernameError, @Nullable Integer passwordError) {
+    RegisterFormState(@Nullable Integer usernameError, @Nullable Integer passwordError, @Nullable Integer nameError) {
         this.usernameError = usernameError;
         this.passwordError = passwordError;
+        this.nameError = nameError;
         this.isDataValid = false;
     }
 
-    LoginFormState(boolean isDataValid) {
+    RegisterFormState(boolean isDataValid) {
         this.usernameError = null;
         this.passwordError = null;
+        this.nameError = null;
         this.isDataValid = isDataValid;
     }
 
@@ -32,6 +33,11 @@ class LoginFormState {
     @Nullable
     Integer getPasswordError() {
         return passwordError;
+    }
+
+    @Nullable
+    public Integer getNameError() {
+        return nameError;
     }
 
     boolean isDataValid() {
