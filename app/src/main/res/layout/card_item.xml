@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:id="@+id/cardView"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="400dp"
-    android:layout_height="wrap_content"
+    android:layout_height="160dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/border"
+    android:clickable="true"
+    app:cardElevation="2dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +21,13 @@
 
         <ImageView
             android:id="@+id/recipeImage"
-            android:layout_width="106dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
             tools:src="@tools:sample/avatars" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -32,19 +36,29 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toTopOf="@+id/kcalTextView" />
 
             <TextView
                 android:id="@+id/timeOfCookTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/descriptionTextView"
+                android:id="@+id/kcalTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

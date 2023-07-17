@@ -3,8 +3,10 @@ package com.example.fit_app_bachelor.ui.dashboard.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "recipes")
-public class Recipe {
+public class Recipe implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String title;

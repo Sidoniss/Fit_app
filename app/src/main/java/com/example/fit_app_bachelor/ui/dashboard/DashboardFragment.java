@@ -1,6 +1,9 @@
 package com.example.fit_app_bachelor.ui.dashboard;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,9 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
 
+    final String[] items = {"no lactose","no gluten","keto","without meat"};
+    final boolean[] checkedItems = {false,false,false,false};
+
     public DashboardFragment() {
     }
 
@@ -46,10 +52,31 @@ public class DashboardFragment extends Fragment {
         });
 
 
-//        RecipeDAO recipeDAO = RecipeDatabase.getInstance(requireContext()).recipeDAO();
-//        List<Recipe> recipes = recipeDAO.getAllRecipes();
-//        RecipeAdapter adapter = new RecipeAdapter(recipes);
-//        recyclerView.setAdapter(adapter);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("filter")
+                        .setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                checkedItems[which] = isChecked;
+                            }
+                        })
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                for (int i=0; i<checkedItems.length; i++) {
+                                    if (checkedItems[i]) {
+                                        Log.d("DashboardFragment",items[i] + "was selected.");
+                                    }
+                                }
+                            }
+                        });
+                builder.create().show();
+            }
+        });
 
         return root;
     }

@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fit_app_bachelor"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.dashboard.DetailActivity"
+            android:exported="false" />
         <activity
             android:name=".login.activities.ui.register.RegisterActivity"
             android:exported="false" />

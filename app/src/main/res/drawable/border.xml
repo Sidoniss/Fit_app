@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="@android:color/white"/> <!-- Kolor tła CardView -->
+        <stroke android:color="@android:color/black" android:width="4dp"/> <!-- Kolor i szerokość krawędzi -->
+        <corners android:radius="4dp"/> <!-- Zaokrąglenie rogów, możesz dostosować -->
+</shape>
