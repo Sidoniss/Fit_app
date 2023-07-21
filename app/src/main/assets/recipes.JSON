@@ -3,21 +3,292 @@
     "title": "Kotleciki schabowe z paprykowym sosem",
     "time_of_cook": 45,
     "description": "Krok 1\nSchab pokrój w plastry, rozbij lekko młotkiem i dopraw do smaku Przyprawą do mięs Knorr.\n\nKrok 2\nPaprykę, cebulę oraz czosnek pokrój na mniejsze kawałki i podsmaż na rozgrzanej oliwie przez około 5 minut.\n\nKrok 3\nNastępnie podlej je śmietaną, dodaj szklankę wody oraz Bulion Knorr. Duś około 10 minut, po czym zmiksuj wszystkie składniki.\n\nKrok 4\nSos dopraw do smaku pieprzem i odrobiną soli (jeśli uznasz to za konieczne).\n\nKrok 5\nNa koniec obsmaż mięso z obu stron na patelni, zalej sosem, wszystko razem duś około 5 minut.",
+    "ingredients": [
+      {
+        "name": "schab środkowy",
+        "quantity": "400 gramów"
+      },
+      {
+        "name": "Bulion warzywny Knorr",
+        "quantity": "1 opakowanie"
+      },
+      {
+        "name": "czerwona papryka średniej wielkośc",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "cebula średniej wielkości",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "ząbek czosnku",
+        "quantity": "2 sztuki"
+      },
+      {
+        "name": "śmietana",
+        "quantity": "100 mililitrów"
+      },
+      {
+        "name": "oliwa z oliwek",
+        "quantity": "50 mililitrów"
+      },
+      {
+        "name": "woda",
+        "quantity": "1 szklanka"
+      },
+      {
+        "name": "sól do smaku",
+        "quantity": "1 szczypta"
+      },
+      {
+        "name": "pieprz czarny mielony",
+        "quantity": "1 szczypta"
+      },
+      {
+        "name": "Przyprawa do mięs Knorr",
+        "quantity": "1 łyżka"
+      }
+    ],
     "kcal": 1200,
-    "picture": "https://www.przyslijprzepis.pl/media/cache/big/uploads/media/recipe/0007/21/kotlety-schabowe-po-parysku.jpeg"
+    "picture": "https://www.przyslijprzepis.pl/media/cache/big/uploads/media/recipe/0007/21/kotlety-schabowe-po-parysku.jpeg",
+    "filters": {
+      "bez laktozy": true,
+      "bez glutenu": true,
+      "niskotłuszczowy": false,
+      "wegetariański": false,
+      "wegański": false
+    }
   },
   {
     "title": "Sałatka ze szpinakiem i kurczakiem",
     "time_of_cook": 35,
     "description": "Krok 1\nPrzygotowanie sałatki ze szpinakiem i kurczakiem zacznij od ugotowania komosy ryżowej. Wrzuć jedną jej torebkę (to około 100 gramów) do wrzącej wody i gotuj według przepisu podanego na opakowaniu. Gdy komosa będzie już gotowa, odcedź ją na sicie i odstaw do wystygnięcia.\n\nKrok 2\nNastępnie zajmij się mięsem. Umyj dokładnie piersi z kurczaka, usuń z nich zbędne żyłki i przerosty tłuszczu (poznasz je po białym kolorze). Osusz mięso (np. ręcznikiem papierowym) i pokrój je w paseczki lub kostkę. Oprósz je Przyprawą do pikantnego kurczaka Knorr i delikatnie wetrzyj ją w mięso. W tym czasie rozgrzej na patelni 3 łyżki oliwy z suszonych pomidorów. Potem wsyp pokrojone mięso na patelnię i smaż, aż lekko się przyrumieni z każdej strony. Odstaw przyrządzone mięso do wystygnięcia.\n\nKrok 3\nPrzygotuj swój ulubiony nóż i deskę do krojenia. Pokrój na niej 5 suszonych pomidorów w małą kostkę, a 8 pomidorków koktajlowych przekrój na pół. 30 gramów sera feta pokrój w kostkę o grubości 1 centymetra.\n\nKrok 4\nWyjmij dużą miskę. Wlej do niej pozostałe 3 łyżki oliwy z suszonych pomidorów oraz 3 łyżki wody, a następnie wsyp zawartość Sosu sałatkowego włoskiego Knorr. Wymieszaj składniki. Do powstałego dressingu sałatki dodaj 100 gramów szpinaku (jeśli wolisz, możesz go wcześniej posiekać według uznania), pokrojone dwa rodzaje pomidorów, usmażonego kurczaka, ser feta oraz ugotowaną komosę ryżową. Na koniec dosyp do sałatki garść ulubionych kiełków. Dokładnie wymieszaj ze sobą wszystkie składniki. Sałatkę z kurczakiem i szpinakiem serwuj w głębokich talerzach.",
+    "ingredients": [
+      {
+        "name": "komosa ryżowa",
+        "quantity": "100 gramów"
+      },
+      {
+        "name": "pierś z kurczaka podwójna",
+        "quantity": "2 sztuki"
+      },
+      {
+        "name": "Przyprawa do pikantnego kurczaka Knorr",
+        "quantity": "1 łyżka"
+      },
+      {
+        "name": "Sos sałatkowy włoski Knor",
+        "quantity": "1 opakowanie"
+      },
+      {
+        "name": "świeży szpinak",
+        "quantity": "100 gramów"
+      },
+      {
+        "name": "pomidory suszone",
+        "quantity": "5 sztuk"
+      },
+      {
+        "name": "pomidorki koktajlowe",
+        "quantity": "8 sztuk"
+      },
+      {
+        "name": "ser feta",
+        "quantity": "30 gramów"
+      },
+      {
+        "name": "oliwa z suszonych pomidorów",
+        "quantity": "6 łyżek"
+      },
+      {
+        "name": "ulubione kiełki",
+        "quantity": "1 garść"
+      }
+    ],
     "kcal": 700,
-    "picture": "https://www.przyslijprzepis.pl/media/cache/default_view/uploads/media/recipe/0007/04/salatka_2.jpeg"
+    "picture": "https://www.przyslijprzepis.pl/media/cache/default_view/uploads/media/recipe/0007/04/salatka_2.jpeg",
+    "filters": {
+      "bez laktozy": true,
+      "bez glutenu": true,
+      "niskotłuszczowy": false,
+      "wegetariański": false,
+      "wegański": false
+    }
   },
   {
     "title": "Klubowe mini kanapki",
     "time_of_cook": 15,
     "description": "Krok 1\nKromki pieczywa opiecz chwilę w tosterze. Majonez wymieszaj z ketchupem i posmaruj nim tosty z jednej strony.\n\nKrok 2\nNa 4 kromkach rozłóż identycznie: po listku sałaty, szynkę, ser oraz plastry ogórka.\n\nKrok 3\nTeraz złóż „piętrowo” klubowe kanapki – dwie kanapki z dodatkami jedna na drugiej i przykryj pozostałą, posmarowaną majonezem kromką. Z drugą kanapką zrób tak samo.\n\nKrok 4\nKanapki przyciśnij lekko dłonią. Przy każdy boku kanapki wciśnij wykałaczkę i pokrój kanapkę po przekątnej tak, aby otrzymać cztery trójkątne mini kanapki.",
+    "ingredients": [
+      {
+        "name": "pieczywo tostowe pełnoziarniste, kromki",
+        "quantity": "6 sztuk"
+      },
+      {
+        "name": "Majonez Hellmann's Oryginalny",
+        "quantity": "2 łyżki"
+      },
+      {
+        "name": "Ketchup Hellmann's Łagodny",
+        "quantity": "1 łyżeczka"
+      },
+      {
+        "name": "szynka konserwowa",
+        "quantity": "4 plastry"
+      },
+      {
+        "name": "ser topiony w plastrach",
+        "quantity": "4 sztuki"
+      },
+      {
+        "name": "ogórek konserwowy",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "liście sałaty",
+        "quantity": "4 sztuki"
+      }
+    ],
     "kcal": 300,
-    "picture": "https://www.przyslijprzepis.pl/media/cache/default_view/uploads/media/recipe/0010/90/kanapki-imprezowe-na-4-sposoby.jpg"
+    "picture": "https://www.przyslijprzepis.pl/media/cache/default_view/uploads/media/recipe/0010/90/kanapki-imprezowe-na-4-sposoby.jpg",
+    "filters": {
+      "bez laktozy": false,
+      "bez glutenu": false,
+      "niskotłuszczowy": false,
+      "wegetariański": false,
+      "wegański": false
+    }
+  },
+  {
+    "title": "Gęsta zupa z zielonej soczewicy",
+    "time_of_cook": 60,
+    "description": "Krok 1\nZiemniaki, cebulę, czosnek, marchewkę oraz selera naciowego pokrój w drobną kostkę.\n\nKrok 2\nW garnku rozgrzej oliwę i smaż cebulę oraz czosnek.\n\nKrok 3\nJak się zrumienią, dodaj selera i marchew.\n\nKrok 4\nPo kilku minutach smażenia wlej bulion i całość zagotuj.\n\nKrok 5\nTeraz dodaj soczewicę i ziemniaki. Żeby wydobyć bogaty smak dania dodaj kostkę Bulionu na włoszczyźnie Knorr i całość gotuj, aż zupa zrobi się gęsta, a ziemniaki i soczewica bardzo zmiękną. Ewentualnie wlej trochę wody. Podawaj z pieczywem, posypaną posiekaną natką pietruszki.",
+    "ingredients": [
+      {
+        "name": "zielona soczewica",
+        "quantity": "300 gramów"
+      },
+      {
+        "name": "Bulion warzywny Knorr",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "ziemniaki",
+        "quantity": "3 sztuki"
+      },
+      {
+        "name": "marchewka",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "seler naciowy",
+        "quantity": "2 sztuki"
+      },
+      {
+        "name": "cebula",
+        "quantity": "2 sztuki"
+      },
+      {
+        "name": "ząbki czosnku",
+        "quantity": "3 sztuki"
+      },
+      {
+        "name": "bulion",
+        "quantity": "500 mililitrów"
+      },
+      {
+        "name": "natka pietruszki",
+        "quantity": "1 pęczek"
+      },
+      {
+        "name": "oliwa z oliwek",
+        "quantity": "80 mililitrów"
+      }
+    ],
+    "kcal": 400,
+    "picture": "https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/gesta-zupa-z-zielonej-soczewicy.jpg",
+    "filters": {
+      "bez laktozy": true,
+      "bez glutenu": true,
+      "niskotłuszczowy": true,
+      "wegetariański": true,
+      "wegański": true
+    }
+  },
+  {
+    "title": "Chrupiący falafel z dipem ziołowo-jogurtowym",
+    "time_of_cook": 15,
+    "description": "Krok 1\nPosiekaj czosnek , cebule, kolendrę i natkę pietruszki. Ciecierzycę odlej z zalewy i wypłucz. Wszystkie składniki umieść w mikserze, dodaj kostkę rosołową, kmin, mąkę i dokładnie zmiel na prawie jednolitą masę.\n\nKrok 2\nZ powstałej masy uformuj małe kulki i delikatnie je rozpłaszcz. Kotleciki smaż na złoty kolor, w gorącym, głębokim tłuszczu.\n\nKrok 3\nPrzygotuj dip jogurtowy mieszając jogurt z sokiem z cytryny, koperkiem i miętą. Dip dopraw do smaku pieprzem.\n\nKrok 4\nGotowe kotleciki podawaj z pitą na sałacie z dipem czosnkowym.",
+    "ingredients": [
+      {
+        "name": "średniej wielkości cebula",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "ząbek czosnku",
+        "quantity": "3 sztuki"
+      },
+      {
+        "name": "ciecierzyca z puszki",
+        "quantity": "2 sztuki"
+      },
+      {
+        "name": "mąka pszenna",
+        "quantity": "2 łyżki"
+      },
+      {
+        "name": "kmin rzymski",
+        "quantity": "1 łyżka"
+      },
+      {
+        "name": "Bulion warzywny Knorr",
+        "quantity": "1 sztuka"
+      },
+      {
+        "name": "pietruszka",
+        "quantity": "1 pęczek"
+      },
+      {
+        "name": "natka kolendry",
+        "quantity": "1 pęczek"
+      },
+      {
+        "name": "olej do smażenia",
+        "quantity": "100 mililitrów"
+      },
+      {
+        "name": "gęsty jogurt naturalny",
+        "quantity": "200 mililitrów"
+      },
+      {
+        "name": "sok z połowy cytryny",
+        "quantity": "25 mililitrów"
+      },
+      {
+        "name": "sałata lodowa",
+        "quantity": "3 listki"
+      },
+      {
+        "name": "posiekana mięta",
+        "quantity": "1 łyżka"
+      },
+      {
+        "name": "posiekany koperek",
+        "quantity": "1 łyżka"
+      },
+      {
+        "name": "chleb pita",
+        "quantity": "2 sztuki"
+      }
+    ],
+    "kcal": 500,
+    "picture": "https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/crunchy-falafel-with-yoghurt-dip_a1989322.jpg",
+    "filters": {
+      "bez laktozy": false,
+      "bez glutenu": false,
+      "niskotłuszczowy": true,
+      "wegetariański": true,
+      "wegański": false
+    }
   }
 ]

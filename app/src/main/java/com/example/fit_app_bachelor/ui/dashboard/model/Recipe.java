@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 
 @Entity(tableName = "recipes")
 public class Recipe implements Serializable {
@@ -12,15 +14,20 @@ public class Recipe implements Serializable {
     private String title;
     private int time_of_cook;
     private String description;
+
+    private List<Ingredient> ingredients;
     private int kcal;
     private String picture;
+    private HashMap<String,Boolean> filters;
 
-    public Recipe(String title, int time_of_cook, String description, int kcal, String picture) {
+    public Recipe(String title, int time_of_cook, String description,List<Ingredient> ingredients, int kcal, String picture,HashMap<String,Boolean> filters) {
         this.title = title;
         this.time_of_cook = time_of_cook;
         this.description = description;
+        this.ingredients = ingredients;
         this.kcal = kcal;
         this.picture = picture;
+        this.filters = filters;
     }
 
     public Recipe() {
@@ -58,6 +65,14 @@ public class Recipe implements Serializable {
         this.description = description;
     }
 
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public int getKcal() {
         return kcal;
     }
@@ -72,5 +87,13 @@ public class Recipe implements Serializable {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public HashMap<String, Boolean> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(HashMap<String, Boolean> filters) {
+        this.filters = filters;
     }
 }

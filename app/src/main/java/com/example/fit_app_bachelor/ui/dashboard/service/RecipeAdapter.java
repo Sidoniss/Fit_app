@@ -1,6 +1,7 @@
 package com.example.fit_app_bachelor.ui.dashboard.service;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,5 +87,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 listener.onRecipeClick(position,view);
             }
         }
+    }
+
+    public void filterList(List<Recipe> filteredRecipes) {
+        this.recipes = filteredRecipes;
+        notifyDataSetChanged();
     }
 }

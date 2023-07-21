@@ -1,29 +1,25 @@
 package com.example.fit_app_bachelor.ui.dashboard.service;
 
 import android.content.Context;
-import android.os.AsyncTask;
-
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
-import androidx.room.DatabaseConfiguration;
-import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
-
 import com.example.fit_app_bachelor.ui.dashboard.model.Recipe;
 import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Recipe.class}, version = 1, exportSchema = false)
+@Database(entities = {Recipe.class}, version = 2, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class RecipeDatabase extends RoomDatabase {
     private static RecipeDatabase instance;
     private final MutableLiveData<Boolean> mLsDatabaseCreated = new MutableLiveData<>();
@@ -35,6 +31,7 @@ public abstract class RecipeDatabase extends RoomDatabase {
         if (instance ==null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     RecipeDatabase.class,"recipesDatabase.db")
+                    //.fallbackToDestructiveMigration()
                     .addCallback(new RoomDatabase.Callback() {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -55,7 +52,7 @@ public abstract class RecipeDatabase extends RoomDatabase {
                 byte[] buffer = new byte[size];
                 is.read(buffer);
                 is.close();
-                String json = new String(buffer,"UTF-8");
+                String json = new String(buffer, StandardCharsets.UTF_8);
 
                 Gson gson = new Gson();
                 Recipe[] recipes = gson.fromJson(json,Recipe[].class);
@@ -64,5 +61,6 @@ public abstract class RecipeDatabase extends RoomDatabase {
                 throw new RuntimeException(e);
             }
         },executorService);
+
     }
 }

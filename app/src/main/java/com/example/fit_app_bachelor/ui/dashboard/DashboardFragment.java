@@ -3,6 +3,8 @@ package com.example.fit_app_bachelor.ui.dashboard;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.example.fit_app_bachelor.ui.dashboard.service.RecipeAdapter;
 import com.example.fit_app_bachelor.ui.dashboard.service.RecipeDAO;
 import com.example.fit_app_bachelor.ui.dashboard.service.RecipeDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -29,6 +32,9 @@ public class DashboardFragment extends Fragment {
 
     final String[] items = {"no lactose","no gluten","keto","without meat"};
     final boolean[] checkedItems = {false,false,false,false};
+
+    private List<Recipe> recipes = new ArrayList<>();
+    private RecipeAdapter adapter;
 
     public DashboardFragment() {
     }
@@ -46,12 +52,30 @@ public class DashboardFragment extends Fragment {
         final RecyclerView recyclerView = binding.recycerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
-        dashboardViewModel.getRecipes().observe(getViewLifecycleOwner(), recipes -> {
-            RecipeAdapter adapter = new RecipeAdapter(recipes);
+        dashboardViewModel.getRecipes().observe(getViewLifecycleOwner(), recipeList -> {
+            this.recipes = recipeList;
+            adapter = new RecipeAdapter(recipes);
             recyclerView.setAdapter(adapter);
         });
 
+        searchRecipes.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (adapter != null) {
+                    filter(s.toString(), adapter);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +103,19 @@ public class DashboardFragment extends Fragment {
         });
 
         return root;
+    }
+
+
+    private void filter(String text, RecipeAdapter adapter) {
+        List<Recipe> filteredRecipes = new ArrayList<>();
+
+        for (Recipe recipe : recipes) {
+            if (recipe.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                filteredRecipes.add(recipe);
+            }
+        }
+
+        adapter.filterList(filteredRecipes);
     }
 
     @Override

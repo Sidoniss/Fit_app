@@ -64,6 +64,20 @@
                     android:text="TextView"
                     android:textSize="20sp" />
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardUseCompatPadding="true">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/ingredients_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical"/>
+                </androidx.cardview.widget.CardView>
+
                 <TextView
                     android:id="@+id/descriptionTextViewAC"
                     android:layout_width="wrap_content"
