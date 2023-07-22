@@ -52,11 +52,11 @@
     "kcal": 1200,
     "picture": "https://www.przyslijprzepis.pl/media/cache/big/uploads/media/recipe/0007/21/kotlety-schabowe-po-parysku.jpeg",
     "filters": {
-      "bez laktozy": true,
-      "bez glutenu": true,
-      "niskotłuszczowy": false,
-      "wegetariański": false,
-      "wegański": false
+      "lactose free": true,
+      "gluten free": true,
+      "low fat": false,
+      "vegetarian": false,
+      "vegan": false
     }
   },
   {
@@ -108,11 +108,11 @@
     "kcal": 700,
     "picture": "https://www.przyslijprzepis.pl/media/cache/default_view/uploads/media/recipe/0007/04/salatka_2.jpeg",
     "filters": {
-      "bez laktozy": true,
-      "bez glutenu": true,
-      "niskotłuszczowy": false,
-      "wegetariański": false,
-      "wegański": false
+      "lactose free": true,
+      "gluten free": true,
+      "low fat": false,
+      "vegetarian": false,
+      "vegan": false
     }
   },
   {
@@ -152,11 +152,11 @@
     "kcal": 300,
     "picture": "https://www.przyslijprzepis.pl/media/cache/default_view/uploads/media/recipe/0010/90/kanapki-imprezowe-na-4-sposoby.jpg",
     "filters": {
-      "bez laktozy": false,
-      "bez glutenu": false,
-      "niskotłuszczowy": false,
-      "wegetariański": false,
-      "wegański": false
+      "lactose free": false,
+      "gluten free": false,
+      "low fat": false,
+      "vegetarian": false,
+      "vegan": false
     }
   },
   {
@@ -208,11 +208,11 @@
     "kcal": 400,
     "picture": "https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/gesta-zupa-z-zielonej-soczewicy.jpg",
     "filters": {
-      "bez laktozy": true,
-      "bez glutenu": true,
-      "niskotłuszczowy": true,
-      "wegetariański": true,
-      "wegański": true
+      "lactose free": true,
+      "gluten free": true,
+      "low fat": true,
+      "vegetarian": true,
+      "vegan": true
     }
   },
   {
@@ -284,11 +284,11 @@
     "kcal": 500,
     "picture": "https://s3.przepisy.pl/przepisy3ii/img/variants/800x0/crunchy-falafel-with-yoghurt-dip_a1989322.jpg",
     "filters": {
-      "bez laktozy": false,
-      "bez glutenu": false,
-      "niskotłuszczowy": true,
-      "wegetariański": true,
-      "wegański": false
+      "lactose free": false,
+      "gluten free": false,
+      "low fat": true,
+      "vegetarian": true,
+      "vegan": false
     }
   }
 ]

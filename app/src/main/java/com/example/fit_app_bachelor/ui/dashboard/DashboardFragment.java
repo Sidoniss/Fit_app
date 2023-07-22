@@ -30,9 +30,10 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
 
-    final String[] items = {"no lactose","no gluten","keto","without meat"};
-    final boolean[] checkedItems = {false,false,false,false};
+    final String[] items = {"lactose free","gluten free","low fat","vegan","vegetarian"};
+    final boolean[] checkedItems = {false,false,false,false,false};
 
+    private String searchText = "";
     private List<Recipe> recipes = new ArrayList<>();
     private RecipeAdapter adapter;
 
@@ -54,8 +55,7 @@ public class DashboardFragment extends Fragment {
 
         dashboardViewModel.getRecipes().observe(getViewLifecycleOwner(), recipeList -> {
             this.recipes = recipeList;
-            adapter = new RecipeAdapter(recipes);
-            recyclerView.setAdapter(adapter);
+            filter(searchText,checkedItems);
         });
 
         searchRecipes.addTextChangedListener(new TextWatcher() {
@@ -66,9 +66,8 @@ public class DashboardFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (adapter != null) {
-                    filter(s.toString(), adapter);
-                }
+                searchText = s.toString();
+                filter(searchText,checkedItems);
             }
 
             @Override
@@ -91,11 +90,7 @@ public class DashboardFragment extends Fragment {
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                for (int i=0; i<checkedItems.length; i++) {
-                                    if (checkedItems[i]) {
-                                        Log.d("DashboardFragment",items[i] + "was selected.");
-                                    }
-                                }
+                                filter(searchText,checkedItems);
                             }
                         });
                 builder.create().show();
@@ -106,16 +101,32 @@ public class DashboardFragment extends Fragment {
     }
 
 
-    private void filter(String text, RecipeAdapter adapter) {
+    private void filter(String text, boolean[] checkedItems) {
         List<Recipe> filteredRecipes = new ArrayList<>();
 
         for (Recipe recipe : recipes) {
             if (recipe.getTitle().toLowerCase().contains(text.toLowerCase())) {
-                filteredRecipes.add(recipe);
+                boolean matchesAllFilters = true;
+                for (int i=0; i< items.length; i++) {
+                    Boolean recipeFilter = recipe.getFilters().get(items[i]);
+                    if (checkedItems[i] && (recipeFilter == null || !recipeFilter)) {
+                        matchesAllFilters = false;
+                        break;
+                    }
+                }
+                if (matchesAllFilters) {
+                    filteredRecipes.add(recipe);
+                }
             }
         }
 
-        adapter.filterList(filteredRecipes);
+        if (adapter == null) {
+            adapter = new RecipeAdapter(filteredRecipes);
+            RecyclerView recyclerView = binding.recycerView;
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter.filterList(filteredRecipes);
+        }
     }
 
     @Override
