@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Fit_app_bachelor"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.StagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ChooseTrainingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.dashboard.DetailActivity"
             android:exported="false" />
         <activity
