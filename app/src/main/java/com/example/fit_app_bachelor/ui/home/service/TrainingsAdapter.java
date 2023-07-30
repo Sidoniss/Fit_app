@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fit_app_bachelor.R;
 import com.example.fit_app_bachelor.ui.dashboard.service.RecipeAdapter;
 import com.example.fit_app_bachelor.ui.home.StagesActivity;
+import com.example.fit_app_bachelor.ui.home.model.Stage;
 import com.example.fit_app_bachelor.ui.home.model.Training;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +49,9 @@ public class TrainingsAdapter extends RecyclerView.Adapter<TrainingsAdapter.Trai
 
     public void onTrainingClick(int position, View view) {
         Training training = trainings.get(position);
+        List<Stage> stages = training.getStageList();
         Intent intent = new Intent(view.getContext(), StagesActivity.class);
-        intent.putExtra("training",training);
+        intent.putExtra("stages",(Serializable) stages);
         view.getContext().startActivity(intent);
     }
 
