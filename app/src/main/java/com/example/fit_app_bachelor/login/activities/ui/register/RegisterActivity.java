@@ -24,6 +24,7 @@ import com.example.fit_app_bachelor.MainActivity;
 import com.example.fit_app_bachelor.R;
 import com.example.fit_app_bachelor.databinding.ActivityRegisterBinding;
 import com.example.fit_app_bachelor.login.Service.ApiService;
+import com.example.fit_app_bachelor.login.Service.ApiServiceSingleton;
 import com.example.fit_app_bachelor.login.activities.ui.login.LoginActivity;
 
 import retrofit2.Retrofit;
@@ -32,8 +33,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterActivity extends AppCompatActivity {
     private  RegisterViewModel registerViewModel;
     private ActivityRegisterBinding binding;
-    private ApiService apiService;
-
 
 
     @Override
@@ -43,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        apiService = createApiService();
+        ApiService apiService = ApiServiceSingleton.getInstance();
 
         RegisterViewModelFactory factory = new RegisterViewModelFactory(apiService);
 
@@ -144,14 +143,6 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-    private ApiService createApiService() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8090/api/auth/") // Podaj bazowy URL serwera API
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(ApiService.class);
     }
 
     private void updateUiWithUser(RegisterInUserView model) {

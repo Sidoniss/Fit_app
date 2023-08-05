@@ -27,7 +27,9 @@ import com.example.fit_app_bachelor.MainActivity;
 import com.example.fit_app_bachelor.R;
 import com.example.fit_app_bachelor.databinding.ActivityLoginBinding;
 import com.example.fit_app_bachelor.login.Service.ApiService;
+import com.example.fit_app_bachelor.login.Service.ApiServiceSingleton;
 import com.example.fit_app_bachelor.login.activities.ui.register.RegisterActivity;
+import com.example.fit_app_bachelor.login.activities.ui.resetPassword.recover.RecoverActivity;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -36,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
-    private ApiService apiService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        apiService = createApiService();
+        ApiService apiService = ApiServiceSingleton.getInstance();
 
         LoginViewModelFactory factory = new LoginViewModelFactory(apiService);
 
@@ -56,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
         final TextView registerTextView = binding.registerTextView;
+        final TextView forgotPasswordTextView = binding.forgotPasswordTextView;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -133,6 +135,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RecoverActivity.class);
+                startActivity(intent);
+            }
+        });
+
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,15 +151,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private ApiService createApiService() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8090/api/auth/") // Podaj bazowy URL serwera API
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(ApiService.class);
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

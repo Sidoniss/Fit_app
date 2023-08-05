@@ -16,4 +16,14 @@
     <string name="register_failed">"Register failed"</string>
     <string name="register">Register</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="login">Login</string>
+    <string name="next">Next</string>
+    <string name="name">name</string>
+    <string name="registration">Registration</string>
+    <string name="privacy_policy">I accept the terms of the privacy policy.</string>
+    <string name="back">Back</string>
+    <string name="new_password">New password</string>
+    <string name="token">token</string>
+    <string name="change_password">Change password</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>

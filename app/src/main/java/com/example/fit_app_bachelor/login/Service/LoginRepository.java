@@ -39,4 +39,13 @@ public class LoginRepository {
     public LiveData<Result<User>> register(String email, String password,String name) {
         return dataSource.register(email,password,name);
     }
+
+    public LiveData<Result<String>> sendEmailWithToken(String email) {
+        return dataSource.sendEmail(email);
+    }
+
+    public LiveData<Result<String>> resetPassword(String newPassword,String token) {
+        return dataSource.resetPassword(newPassword, token);
+    }
+
 }
