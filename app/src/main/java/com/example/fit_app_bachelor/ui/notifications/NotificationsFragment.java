@@ -1,37 +1,39 @@
 package com.example.fit_app_bachelor.ui.notifications;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import androidx.annotation.Nullable;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import com.example.fit_app_bachelor.R;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+public class NotificationsFragment extends PreferenceFragmentCompat {
 
-import com.example.fit_app_bachelor.databinding.FragmentNotificationsBinding;
 
-public class NotificationsFragment extends Fragment {
+    @Override
+    public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
+        setPreferencesFromResource(R.xml.preferences,rootKey);
 
-    private FragmentNotificationsBinding binding;
+        Preference infoButton = findPreference("infoButton");
+        Preference changePasswordButton = findPreference("changePasswordButton");
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        if (infoButton != null) {
+            infoButton.setOnPreferenceClickListener(preference -> {
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+                return true;
+            });
+        }
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        if (changePasswordButton != null) {
+            changePasswordButton.setOnPreferenceClickListener(preference -> {
+
+                return true;
+            });
+        }
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
 }

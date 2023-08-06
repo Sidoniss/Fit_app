@@ -1,5 +1,6 @@
 package com.example.fit_app_bachelor.login.Service;
 
+import com.example.fit_app_bachelor.login.model.ChangePasswordRequest;
 import com.example.fit_app_bachelor.login.model.LoginRequest;
 import com.example.fit_app_bachelor.login.model.LoginResponse;
 import com.example.fit_app_bachelor.login.model.RecoverRequest;
@@ -22,5 +23,8 @@ public interface ApiService {
 
     @POST("reset")
     Call<Void> resetPassword(@Body ResetRequest request);
+
+    @POST("change-password")
+    Call<Void> changePassword(@Body ChangePasswordRequest request);
 }
 

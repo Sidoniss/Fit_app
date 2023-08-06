@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.fit_app_bachelor.login.model.ChangePasswordRequest;
 import com.example.fit_app_bachelor.login.model.LoginRequest;
 import com.example.fit_app_bachelor.login.model.LoginResponse;
 import com.example.fit_app_bachelor.login.model.RecoverRequest;
@@ -26,12 +27,14 @@ public class LoginDataSource {
     private MutableLiveData<Result<User>> resultMutableLiveData;
     private MutableLiveData<Result<String>> emailresultMutableLiveData;
     private MutableLiveData<Result<String>> resetresultMutableLiveData;
+    private MutableLiveData<Result<String>> changePasswordMutableLiveData;
 
     public LoginDataSource(ApiService apiService) {
         this.apiService = apiService;
         this.resultMutableLiveData = new MutableLiveData<>();
         this.emailresultMutableLiveData = new MutableLiveData<>();
         this.resetresultMutableLiveData = new MutableLiveData<>();
+        this.changePasswordMutableLiveData = new MutableLiveData<>();
     }
 
     public LiveData<Result<User>> login(String username, String password) {
@@ -138,6 +141,30 @@ public class LoginDataSource {
         });
 
         return resetresultMutableLiveData;
+    }
+
+    public LiveData<Result<String>> changePassword(String email,String oldPassword,String newPassword) {
+        ChangePasswordRequest request = new ChangePasswordRequest(email, oldPassword, newPassword);
+
+        Call<Void> call = apiService.changePassword(request);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    changePasswordMutableLiveData.postValue(new Result.Success<>("Password has been changed."));
+                } else {
+                    changePasswordMutableLiveData.postValue(new Result.Error(new IOException("Error changing password")));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                changePasswordMutableLiveData.postValue(new Result.Error(new IOException("Error changing password")));
+            }
+        });
+
+        return changePasswordMutableLiveData;
     }
 
     public void logout() {

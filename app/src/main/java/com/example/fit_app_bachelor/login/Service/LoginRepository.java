@@ -48,4 +48,8 @@ public class LoginRepository {
         return dataSource.resetPassword(newPassword, token);
     }
 
+    public LiveData<Result<String>> changePassword(String email,String oldPassword,String newPassword) {
+        return dataSource.changePassword(email,oldPassword,newPassword);
+    }
+
 }

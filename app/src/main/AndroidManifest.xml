@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Fit_app_bachelor"
         tools:targetApi="31">
         <activity
+            android:name=".login.activities.ui.changePassword.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".login.activities.ui.resetPassword.reset.TokenActivity"
             android:exported="false" />
         <activity
