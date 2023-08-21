@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.treningTextView;
+        final TextView textView = binding.trainingTextView;
         final ImageButton armImageButton = binding.armImageButton;
         final ImageButton legsImageButton = binding.legsImageButton;
         final ImageButton bellyImageButton = binding.bellyImageButton;

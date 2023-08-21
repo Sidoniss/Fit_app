@@ -1,10 +1,11 @@
 package com.example.fit_app_bachelor.login.Service;
 
-import android.util.Log;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.fit_app_bachelor.MyApp;
 import com.example.fit_app_bachelor.login.model.ChangePasswordRequest;
 import com.example.fit_app_bachelor.login.model.LoginRequest;
 import com.example.fit_app_bachelor.login.model.LoginResponse;
@@ -24,17 +25,23 @@ import retrofit2.Response;
  */
 public class LoginDataSource {
     private ApiService apiService;
-    private MutableLiveData<Result<User>> resultMutableLiveData;
-    private MutableLiveData<Result<String>> emailresultMutableLiveData;
-    private MutableLiveData<Result<String>> resetresultMutableLiveData;
+    private UserManager userManager;
+    private MutableLiveData<Result<User>> loginResultMutableLiveData;
+    private MutableLiveData<Result<String>> registerResultMutableLiveData;
+    private MutableLiveData<Result<String>> emailResultMutableLiveData;
+    private MutableLiveData<Result<String>> resetResultMutableLiveData;
     private MutableLiveData<Result<String>> changePasswordMutableLiveData;
+    private PreferencesHelper preferencesHelper;
 
-    public LoginDataSource(ApiService apiService) {
+    public LoginDataSource(ApiService apiService, UserManager userManager) {
         this.apiService = apiService;
-        this.resultMutableLiveData = new MutableLiveData<>();
-        this.emailresultMutableLiveData = new MutableLiveData<>();
-        this.resetresultMutableLiveData = new MutableLiveData<>();
+        this.loginResultMutableLiveData = new MutableLiveData<>();
+        this.registerResultMutableLiveData = new MutableLiveData<>();
+        this.emailResultMutableLiveData = new MutableLiveData<>();
+        this.resetResultMutableLiveData = new MutableLiveData<>();
         this.changePasswordMutableLiveData = new MutableLiveData<>();
+        this.preferencesHelper = PreferencesHelper.getInstance();
+        this.userManager = userManager;
     }
 
     public LiveData<Result<User>> login(String username, String password) {
@@ -48,27 +55,29 @@ public class LoginDataSource {
                 if(response.isSuccessful()) {
                     LoginResponse loginResponse = response.body();
                     if(loginResponse != null) {
-                        User user = new User(loginResponse.getEmail());
-                        resultMutableLiveData.postValue(new Result.Success<>(user));
+                        User user = new User(loginResponse.getEmail(), loginResponse.getName(), loginResponse.getAccountCreationDate());
+                        userManager.getUser(u -> userManager.insertUser(user));
+                        loginResultMutableLiveData.postValue(new Result.Success<>(user));
+                        preferencesHelper.setLoggedIn(true);
                     } else {
-                        resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
+                        loginResultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
                     }
                 }
                 else {
-                    resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
+                    loginResultMutableLiveData.postValue(new Result.Error(new IOException("Invalid login data!")));
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                resultMutableLiveData.postValue(new Result.Error(new IOException("Error logging in!")));
+                loginResultMutableLiveData.postValue(new Result.Error(new IOException("Error logging in!")));
             }
         });
 
-        return resultMutableLiveData;
+        return loginResultMutableLiveData;
     }
 
-    public LiveData<Result<User>> register(String username, String password, String name) {
+    public LiveData<Result<String>> register(String username, String password, String name) {
 
         RegisterRequest request = new RegisterRequest(username,password,name);
 
@@ -78,20 +87,19 @@ public class LoginDataSource {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {
-                    User user = new User(username);
-                    resultMutableLiveData.postValue(new Result.Success<>(user));
+                    registerResultMutableLiveData.postValue(new Result.Success<>("Register successful."));
                 } else {
-                    resultMutableLiveData.postValue(new Result.Error(new IOException("Invalid register data!")));
+                    registerResultMutableLiveData.postValue(new Result.Error(new IOException("Invalid register data!")));
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                resultMutableLiveData.postValue(new Result.Error(new IOException("Registration error!")));
+                registerResultMutableLiveData.postValue(new Result.Error(new IOException("Registration error!")));
             }
         });
 
-        return resultMutableLiveData;
+        return registerResultMutableLiveData;
     }
 
     public LiveData<Result<String>> sendEmail(String email) {
@@ -103,19 +111,19 @@ public class LoginDataSource {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    emailresultMutableLiveData.postValue(new Result.Success<>("Email with reset token sent."));
+                    emailResultMutableLiveData.postValue(new Result.Success<>("Email with reset token sent."));
                 } else {
-                    emailresultMutableLiveData.postValue(new Result.Error(new IOException("Error sending email with token!")));
+                    emailResultMutableLiveData.postValue(new Result.Error(new IOException("Error sending email with token!")));
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                emailresultMutableLiveData.postValue(new Result.Error(new IOException("Error sending email with token!")));
+                emailResultMutableLiveData.postValue(new Result.Error(new IOException("Error sending email with token!")));
             }
         });
 
-        return emailresultMutableLiveData;
+        return emailResultMutableLiveData;
     }
 
     public LiveData<Result<String>> resetPassword(String newPassword,String token) {
@@ -128,19 +136,19 @@ public class LoginDataSource {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    resetresultMutableLiveData.postValue(new Result.Success<>("Password has been reset."));
+                    resetResultMutableLiveData.postValue(new Result.Success<>("Password has been reset."));
                 } else {
-                    resetresultMutableLiveData.postValue(new Result.Error(new IOException("Error resetting password!")));
+                    resetResultMutableLiveData.postValue(new Result.Error(new IOException("Error resetting password!")));
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                resetresultMutableLiveData.postValue(new Result.Error(new IOException("Error resetting password!")));
+                resetResultMutableLiveData.postValue(new Result.Error(new IOException("Error resetting password!")));
             }
         });
 
-        return resetresultMutableLiveData;
+        return resetResultMutableLiveData;
     }
 
     public LiveData<Result<String>> changePassword(String email,String oldPassword,String newPassword) {
@@ -168,6 +176,7 @@ public class LoginDataSource {
     }
 
     public void logout() {
-        // TODO: revoke authentication
+        preferencesHelper.setLoggedIn(false);
+        userManager.deleteUser();
     }
 }

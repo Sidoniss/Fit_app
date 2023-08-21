@@ -13,6 +13,10 @@
             app:key="changePasswordButton"
             app:title="Change password"
             app:layout="@layout/preference_custom_layout"/>
+        <Preference
+            app:key="logoutButton"
+            app:title="Logout"
+            app:layout="@layout/preference_logout_layout" />
     </PreferenceCategory>
 
 </PreferenceScreen>

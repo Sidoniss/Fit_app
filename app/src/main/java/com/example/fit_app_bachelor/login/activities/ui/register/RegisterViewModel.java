@@ -27,8 +27,8 @@ public class RegisterViewModel extends ViewModel {
     public void register(String username,String password,String name) {
         loginRepository.register(username,password,name).observeForever(result -> {
             if (result instanceof Result.Success) {
-                User data = ((Result.Success<User>) result).getData();
-                registerResult.setValue(new RegisterResult(new RegisterInUserView(data.getEmail())));
+                String data = ((Result.Success<String>) result).getData();
+                registerResult.setValue(new RegisterResult("Register success!"));
             } else {
                 registerResult.setValue(new RegisterResult(R.string.register_failed));
             }

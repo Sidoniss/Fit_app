@@ -1,7 +1,10 @@
 package com.example.fit_app_bachelor;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.fit_app_bachelor.login.Service.PreferencesHelper;
+import com.example.fit_app_bachelor.login.activities.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +23,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        PreferencesHelper preferencesHelper = PreferencesHelper.getInstance();
+
+        if (!preferencesHelper.isLoggedIn()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

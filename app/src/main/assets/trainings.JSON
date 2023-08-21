@@ -3,6 +3,7 @@
     "title": "arm training 1",
     "time": 20,
     "category": 1,
+    "difficult": 1,
     "stageList": [
       {
         "description": "wykonaj 10 pompek!",
@@ -22,6 +23,7 @@
     "title": "legs training 1",
     "time": 20,
     "category": 2,
+    "difficult": 2,
     "stageList": [
       {
         "description": "wykonaj 10 przysiadów!",

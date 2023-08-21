@@ -1,14 +1,18 @@
 package com.example.fit_app_bachelor.ui.home.service;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fit_app_bachelor.R;
@@ -39,7 +43,8 @@ public class TrainingsAdapter extends RecyclerView.Adapter<TrainingsAdapter.Trai
     @Override
     public void onBindViewHolder(@NonNull TrainingViewHolder holder, int position) {
         Training training = trainings.get(position);
-        holder.bindData(training);
+        Context context = holder.itemView.getContext();
+        holder.bindData(training,context);
     }
 
     @Override
@@ -64,6 +69,8 @@ public class TrainingsAdapter extends RecyclerView.Adapter<TrainingsAdapter.Trai
         private TextView titleTextView;
         private TextView timeTextView;
         private TextView stagesSizeTextView;
+
+        private ImageView difficultLevelImageView;
         private CardView cardView;
         private TrainingsAdapter listener;
 
@@ -71,15 +78,33 @@ public class TrainingsAdapter extends RecyclerView.Adapter<TrainingsAdapter.Trai
             super(itemView);
             this.titleTextView = itemView.findViewById(R.id.trainingTitleTextView);
             this.timeTextView = itemView.findViewById(R.id.trainingTimeTextView);
+            this.difficultLevelImageView = itemView.findViewById(R.id.trainingDifficultLevelImageView);
             this.stagesSizeTextView = itemView.findViewById(R.id.stageSizeTextView);
             this.cardView = itemView.findViewById(R.id.trainingCardView);
             cardView.setOnClickListener(this);
             this.listener = listener;
         }
 
-        public void bindData(Training training) {
+        public void bindData(Training training, Context context) {
             titleTextView.setText(training.getTitle());
             timeTextView.setText(String.valueOf("time: " + training.getTime() + " min"));
+            switch (training.getDifficult()) {
+                case 1:
+                    Drawable easy = ContextCompat.getDrawable(context, R.drawable.easy);
+                    difficultLevelImageView.setImageDrawable(easy);
+                    break;
+                case 2:
+                    Drawable medium = ContextCompat.getDrawable(context, R.drawable.medium);
+                    difficultLevelImageView.setImageDrawable(medium);
+                    break;
+                case 3:
+                    Drawable hard = ContextCompat.getDrawable(context, R.drawable.hard);
+                    difficultLevelImageView.setImageDrawable(hard);
+                    break;
+                default:
+                    break;
+
+            }
             stagesSizeTextView.setText(String.valueOf(Optional.ofNullable(training.getStageList()).map(List::size).orElse(0)));
         }
 

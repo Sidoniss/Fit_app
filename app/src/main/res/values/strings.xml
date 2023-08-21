@@ -26,4 +26,7 @@
     <string name="token">token</string>
     <string name="change_password">Change password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="whats_train_today">Co dzisiaj trenujemy?</string>
+
+    <string name="underlined_email"><u>Email</u></string>
 </resources>

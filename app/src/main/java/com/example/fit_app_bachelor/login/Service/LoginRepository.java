@@ -1,8 +1,17 @@
 package com.example.fit_app_bachelor.login.Service;
 
+import android.content.Context;
+import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.example.fit_app_bachelor.login.model.User;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -12,14 +21,16 @@ public class LoginRepository {
 
     private static volatile LoginRepository instance;
     private LoginDataSource dataSource;
+    private UserManager userManager;
 
-    private LoginRepository(LoginDataSource dataSource) {
+    private LoginRepository(LoginDataSource dataSource, UserManager userManager) {
         this.dataSource = dataSource;
+        this.userManager = userManager;
     }
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance(LoginDataSource dataSource,UserManager userManager) {
         if (instance == null) {
-            instance = new LoginRepository(dataSource);
+            instance = new LoginRepository(dataSource,userManager);
         }
         return instance;
     }
@@ -36,7 +47,7 @@ public class LoginRepository {
         return dataSource.login(email,password);
     }
 
-    public LiveData<Result<User>> register(String email, String password,String name) {
+    public LiveData<Result<String>> register(String email, String password,String name) {
         return dataSource.register(email,password,name);
     }
 
@@ -48,8 +59,26 @@ public class LoginRepository {
         return dataSource.resetPassword(newPassword, token);
     }
 
-    public LiveData<Result<String>> changePassword(String email,String oldPassword,String newPassword) {
-        return dataSource.changePassword(email,oldPassword,newPassword);
+    public LiveData<Result<String>> changePassword(String oldPassword,String newPassword) {
+        MutableLiveData<String> emailLiveData = new MutableLiveData<>();
+
+        userManager.getUser(user ->  {
+            if (user != null) {
+                emailLiveData.postValue(user.getEmail());
+            } else {
+                emailLiveData.postValue(null);
+            }
+        });
+
+        return Transformations.switchMap(emailLiveData, email -> {
+            if(email != null) {
+                return dataSource.changePassword(email,oldPassword,newPassword);
+            } else {
+                MutableLiveData<Result<String>> errorResult = new MutableLiveData<>();
+                errorResult.setValue(new Result.Error(new IOException("No user logged in!")));
+                return errorResult;
+            }
+        });
     }
 
 }

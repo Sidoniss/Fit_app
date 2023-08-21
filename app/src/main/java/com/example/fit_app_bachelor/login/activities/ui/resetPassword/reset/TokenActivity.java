@@ -21,6 +21,7 @@ import com.example.fit_app_bachelor.login.Service.ApiServiceSingleton;
 import com.example.fit_app_bachelor.login.Service.LoginDataSource;
 import com.example.fit_app_bachelor.login.Service.LoginRepository;
 import com.example.fit_app_bachelor.login.Service.Result;
+import com.example.fit_app_bachelor.login.Service.UserManager;
 import com.example.fit_app_bachelor.login.activities.ui.login.LoginActivity;
 import com.example.fit_app_bachelor.login.activities.ui.resetPassword.recover.RecoverActivity;
 
@@ -37,8 +38,9 @@ public class TokenActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         ApiService apiService = ApiServiceSingleton.getInstance();
-        LoginDataSource loginDataSource = new LoginDataSource(apiService);
-        LoginRepository loginRepository = LoginRepository.getInstance(loginDataSource);
+        UserManager userManager = new UserManager(this);
+        LoginDataSource loginDataSource = new LoginDataSource(apiService,userManager);
+        LoginRepository loginRepository = LoginRepository.getInstance(loginDataSource,userManager);
 
         TokenViewModelFactory factory = new TokenViewModelFactory(loginRepository);
 

@@ -13,15 +13,18 @@ public class Training implements Serializable {
     private String title;
     private int time;
     private int category;
+
+    private int difficult;
     private List<Stage> stageList;
 
     public Training() {
     }
 
-    public Training(String title, int time, int category, List<Stage> stageList) {
+    public Training(String title, int time, int category, int difficult, List<Stage> stageList) {
         this.title = title;
         this.time = time;
         this.category = category;
+        this.difficult = difficult;
         this.stageList = stageList;
     }
 
@@ -55,6 +58,14 @@ public class Training implements Serializable {
 
     public void setCategory(int category) {
         this.category = category;
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 
     public List<Stage> getStageList() {

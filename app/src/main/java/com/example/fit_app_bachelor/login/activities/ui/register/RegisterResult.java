@@ -9,12 +9,24 @@ public class RegisterResult {
     @Nullable
     private Integer error;
 
+    @Nullable
+    private String message;
+
+    public RegisterResult(String message) {
+        this.message=message;
+    }
+
     RegisterResult(@Nullable Integer error) {
         this.error = error;
     }
 
     RegisterResult(@Nullable RegisterInUserView success) {
         this.success = success;
+    }
+
+    @Nullable
+    public String getMessage() {
+        return message;
     }
 
     @Nullable

@@ -25,6 +25,7 @@ import com.example.fit_app_bachelor.R;
 import com.example.fit_app_bachelor.databinding.ActivityRegisterBinding;
 import com.example.fit_app_bachelor.login.Service.ApiService;
 import com.example.fit_app_bachelor.login.Service.ApiServiceSingleton;
+import com.example.fit_app_bachelor.login.Service.UserManager;
 import com.example.fit_app_bachelor.login.activities.ui.login.LoginActivity;
 
 import retrofit2.Retrofit;
@@ -43,8 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         ApiService apiService = ApiServiceSingleton.getInstance();
+        UserManager userManager = new UserManager(this);
 
-        RegisterViewModelFactory factory = new RegisterViewModelFactory(apiService);
+        RegisterViewModelFactory factory = new RegisterViewModelFactory(apiService,userManager);
 
         registerViewModel = new ViewModelProvider(this,factory).get(RegisterViewModel.class);
 

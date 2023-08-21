@@ -22,17 +22,15 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.fit_app_bachelor.MainActivity;
 import com.example.fit_app_bachelor.R;
 import com.example.fit_app_bachelor.databinding.ActivityLoginBinding;
 import com.example.fit_app_bachelor.login.Service.ApiService;
 import com.example.fit_app_bachelor.login.Service.ApiServiceSingleton;
+import com.example.fit_app_bachelor.login.Service.UserManager;
 import com.example.fit_app_bachelor.login.activities.ui.register.RegisterActivity;
 import com.example.fit_app_bachelor.login.activities.ui.resetPassword.recover.RecoverActivity;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,8 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         ApiService apiService = ApiServiceSingleton.getInstance();
+        UserManager userManager = new UserManager(this);
 
-        LoginViewModelFactory factory = new LoginViewModelFactory(apiService);
+        LoginViewModelFactory factory = new LoginViewModelFactory(apiService,userManager);
 
         loginViewModel = new ViewModelProvider(this, factory).get(LoginViewModel.class);
 
