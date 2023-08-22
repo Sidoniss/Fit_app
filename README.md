@@ -41,10 +41,10 @@ Dodawanie treningu wymaga:
   * 2 - średni
   * 3 - trudny
 - listy etapów, każdy składa się z
-  *opisu
-  *url obrazka
-  *czasu (jeśli to jest typ treningu czasowego np. zrób deskę przez 10 sekund, jeśli to nie jest taki tryb, można podać 0)
-  *typu treningu gdzie:
+  * opisu
+  * url obrazka
+  * czasu (jeśli to jest typ treningu czasowego np. zrób deskę przez 10 sekund, jeśli to nie jest taki tryb, można podać 0)
+  * typu treningu gdzie:
     - 0 - trening czasowy który przechodzi dalej po minięciu określonego czasu
     - 1 - trening po którego wykonaniu trzeba kliknąć dalej by kontynuować
 
