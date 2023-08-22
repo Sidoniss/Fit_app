@@ -14,11 +14,19 @@ dlatego też wszystkie obrazy są pobierane z url. Dzięki temu ogranicza się z
 
 Dodawanie przepisu kulinarneg wymaga:
 - tytułu
-- czasu gotowania
+- czasu gotowania w minutach
 - opisu
 - składników które są zawarte w formie listy, każdy składnik musi mieć podane
-  *nazwę
-  *ilość
+  * nazwę
+  * ilość
+- kalorie
+- url obrazka
+- filtry w formie listy boolean 
+    * bez laktozy
+    * bez glutenu
+    * nisko tłuszczowe
+    * wegetariańskie
+    * wegańskie
 
 Dodawanie treningu wymaga:
 - tytułu
@@ -37,7 +45,7 @@ Dodawanie treningu wymaga:
   *url obrazka
   *czasu (jeśli to jest typ treningu czasowego np. zrób deskę przez 10 sekund, jeśli to nie jest taki tryb, można podać 0)
   *typu treningu gdzie:
-    > 0 - trening czasowy który przechodzi dalej po minięciu określonego czasu
-    > 1 - trening po którego wykonaniu trzeba kliknąć dalej by kontynuować
+    - 0 - trening czasowy który przechodzi dalej po minięciu określonego czasu
+    - 1 - trening po którego wykonaniu trzeba kliknąć dalej by kontynuować
 
   Wszystkie pliki JSON znajdują się w folderze assets
