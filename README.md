@@ -7,7 +7,7 @@ Zaimplementowano też wyszukiwarkę przepisów z filtrami oraz wyszukiwarką tek
 Zaimplementowano model logowania,rejestracji,odzyskiwania hasła z użyciem tokena przychodzącego mailowo(wymagany mailtrap),zmiana starego hasła na nowe,wyświetlenia informacji o koncie.
 Aplikacja zapamiętuje logowanie użytkownika, można się wylogować by przejść na inne konto.
 
-#JSON
+# JSON
 przekazywanie do wewnętrznej bazy danych treningów i przepisów z pliku JSON odbywa się ze względu na łatwość aktualizacji. Przy aktualizacji aplikacji można przekazać plik z nowymi przepisami i treningami,
 dzięki czemu nie ma potrzeby implementowania całego mechanizmu chmurowego do przekazywania ich na bieżąco. Poprawia to szybkość. Założono, że mechanizmy logowania oraz obrazy dotyczące etapów treningu i przepisów będą przechowywane w chmurze,
 dlatego też wszystkie obrazy są pobierane z url. Dzięki temu ogranicza się zajmowanie miejsca na urządzeniu docelowym.
