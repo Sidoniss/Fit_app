@@ -49,3 +49,5 @@ Dodawanie treningu wymaga:
     - 1 - trening po którego wykonaniu trzeba kliknąć dalej by kontynuować
 
   Wszystkie pliki JSON znajdują się w folderze assets
+
+  # Możliwe, że trzeba będzie podać inną drogę do localhosta w pliku ApiServiceSingleton by prawidłowo obsługiwało rest api
