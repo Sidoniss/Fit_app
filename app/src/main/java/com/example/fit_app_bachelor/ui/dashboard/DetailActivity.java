@@ -27,6 +27,10 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         titleTextView = findViewById(R.id.titleTextViewAC);
         timeOfCookTextView = findViewById(R.id.timeOfCookTextViewAC);
         kcalTextView = findViewById(R.id.kcalTextViewAC);

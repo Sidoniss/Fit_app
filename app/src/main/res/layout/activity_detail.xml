@@ -11,23 +11,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="0"
-                android:text="Button" />
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +59,7 @@
                     app:cardCornerRadius="10dp"
                     app:cardUseCompatPadding="true">
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.example.fit_app_bachelor.ui.dashboard.service.NonScrollingRecyclerView
                         android:id="@+id/ingredients_recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

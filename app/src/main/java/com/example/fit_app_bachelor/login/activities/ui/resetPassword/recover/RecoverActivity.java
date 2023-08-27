@@ -32,6 +32,10 @@ public class RecoverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         binding = ActivityRecoverBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

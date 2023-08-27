@@ -1,19 +1,89 @@
 [
   {
     "title": "arm training 1",
-    "time": 20,
+    "time": 2,
     "category": 1,
     "difficult": 1,
     "stageList": [
       {
-        "description": "wykonaj 10 pompek!",
-        "imageUrl": "https://www.fabrykasily.pl/upload/gallery/2022/01/id_24943_1642160796_1260x840.jpg",
+        "description": "Wykonaj 10 pompek!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
         "time": 0,
         "type": 1
       },
       {
-        "description": "wykonaj !",
-        "imageUrl": "https://www.fabrykasily.pl/upload/gallery/2022/01/id_24943_1642160796_1260x840.jpg",
+        "description": "Wykonaj zwis na drążku przez 20 sekund!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 0
+      },
+      {
+        "description": "Wykonaj 15 pompek!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 1
+      }
+    ]
+  },
+  {
+    "title": "arm training 2",
+    "time": 2,
+    "category": 1,
+    "difficult": 2,
+    "stageList": [
+      {
+        "description": "Wykonaj 10 pompek!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 0,
+        "type": 1
+      },
+      {
+        "description": "Wykonaj zwis na drążku przez 20 sekund!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 0
+      },
+      {
+        "description": "Wykonaj 15 pompek!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 1
+      },
+      {
+        "description": "Wykonaj zwis na drążku przez 20 sekund!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 0
+      }
+    ]
+  },
+  {
+    "title": "arm training, so long title, i don't know why????",
+    "time": 2,
+    "category": 1,
+    "difficult": 3,
+    "stageList": [
+      {
+        "description": "Wykonaj 10 pompek!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 0,
+        "type": 1
+      },
+      {
+        "description": "Wykonaj 15 pompek!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 1
+      },
+      {
+        "description": "Wykonaj zwis na drążku przez 20 sekund!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 20,
+        "type": 0
+      },
+      {
+        "description": "Wykonaj zwis na drążku przez 20 sekund!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
         "time": 20,
         "type": 0
       }
@@ -21,19 +91,25 @@
   },
   {
     "title": "legs training 1",
-    "time": 20,
+    "time": 4,
     "category": 2,
     "difficult": 2,
     "stageList": [
       {
-        "description": "wykonaj 10 przysiadów!",
-        "imageUrl": "https://www.fabrykasily.pl/upload/gallery/2022/01/id_24943_1642160796_1260x840.jpg",
+        "description": "Wykonaj 10 przysiadów!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
         "time": 0,
         "type": 1
       },
       {
-        "description": "wykonaj !",
-        "imageUrl": "https://www.fabrykasily.pl/upload/gallery/2022/01/id_24943_1642160796_1260x840.jpg",
+        "description": "Wykonaj po 10 wykroków na każdą nogę!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
+        "time": 0,
+        "type": 1
+      },
+      {
+        "description": "Wykonaj nożyce przez 20 sekund!",
+        "imageUrl": "https://drive.google.com/uc?export=view&id=1iVfaf-UCIi7DrDlnlNYbTXn1BPeWZiPh",
         "time": 20,
         "type": 0
       }

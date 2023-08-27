@@ -23,17 +23,17 @@
             <EditText
                 android:id="@+id/search_recipes"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Search"
+                android:hint="@string/search"
                 android:inputType="text" />
 
             <Button
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="S" />
+                android:text="@string/filters" />
 
         </LinearLayout>
 

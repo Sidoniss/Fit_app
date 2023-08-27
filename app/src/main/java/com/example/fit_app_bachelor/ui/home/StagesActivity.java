@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,57 +23,69 @@ public class StagesActivity extends AppCompatActivity {
     private ActivityStagesBinding binding;
     private List<Stage> stageList;
     private int currentStageIndex = 0;
-    private boolean isBreakStage = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         binding = ActivityStagesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         stageList = (List<Stage>) getIntent().getSerializableExtra("stages");
         setupStage();
+        Log.d("StagesActivity", "Activity created with " + stageList.size() + " stages.");
 
         binding.stagesNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(currentStageIndex < stageList.size() -1) {
-                    isBreakStage=true;
+                if (currentStageIndex < stageList.size() && stageList.get(currentStageIndex).getType() == 0) {
+                    // Jeśli jesteśmy na etapie typu 0, przejdź do kolejnego etapu po kliknięciu w "Ready"
+                    setupType0(stageList.get(currentStageIndex).getTime());
+                } else {
+                    // Dla wszystkich innych etapów, po prostu przejdź do kolejnego etapu
+                    nextStage();
                 }
-                nextStage();
             }
         });
     }
 
     private void setupStage() {
+
         if (currentStageIndex >= stageList.size()) {
-            finish();
+            setupFinalStage();
             return;
         }
-        if (isBreakStage) {
-            setupBreakStage();
-        } else {
-            Stage stage = stageList.get(currentStageIndex);
 
-            Stage currentStage = stageList.get(currentStageIndex);
-            binding.stagesTitleTextView.setText(currentStage.getDescription());
-            Picasso.get().load(stage.getImageUrl()).into(binding.stagesImageView);
-            switch (currentStage.getType()) {
-                case 0:
-                    setupType0(currentStage.getTime());
-                    break;
-                case 1:
-                    setupType1();
-                    break;
+        Stage stage = stageList.get(currentStageIndex);
+        binding.stagesReadyTextView.setVisibility(View.INVISIBLE);
+        Stage currentStage = stageList.get(currentStageIndex);
+        binding.stagesTitleTextView.setText(currentStage.getDescription());
+        Picasso.get().load(stage.getImageUrl()).into(binding.stagesImageView);
+        switch (currentStage.getType()) {
+            case 0:
+                initiateBreakAndStage0();
+                break;
+            case 1:
+                setupType1();
+                break;
+
         }
-        }
+    }
+
+    private void initiateBreakAndStage0() {
+        setupBreakStage();
     }
 
     private void setupType0(int time) {
         final int totalTimeInMillis = time * 1000;
         binding.stagesNextButton.setVisibility(View.GONE);
+        binding.stagesReadyTextView.setVisibility(View.GONE);
+        binding.stagesProgressBar.setVisibility(View.VISIBLE);
 
         new CountDownTimer(totalTimeInMillis,1000) {
             @Override
@@ -83,42 +96,51 @@ public class StagesActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                if(currentStageIndex < stageList.size() -1) {
-                    isBreakStage=true;
-                }
                 nextStage();
             }
         }.start();
     }
 
     private void setupBreakStage() {
-        binding.stagesNextButton.setVisibility(View.GONE);
+        binding.stagesNextButton.setVisibility(View.VISIBLE);
+        binding.stagesNextButton.setText(R.string.ready);
+        binding.stagesReadyTextView.setVisibility(View.VISIBLE);
+        binding.stagesProgressBar.setVisibility(View.GONE);
 
-        new CountDownTimer( 10000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                binding.stagesProgressBar.setProgress((int) (10000 - millisUntilFinished) / 100);
-            }
-
-            @Override
-            public void onFinish() {
-                isBreakStage = false;
-                nextStage();
-            }
-        }.start();
+        if (currentStageIndex < stageList.size()) {
+            Stage currentStage = stageList.get(currentStageIndex);
+            binding.stagesTitleTextView.setText(currentStage.getDescription());
+            Picasso.get().load(currentStage.getImageUrl()).into(binding.stagesImageView);
+        } else {
+            binding.stagesTitleTextView.setText("");
+            binding.stagesImageView.setImageDrawable(null);
+        }
     }
 
     private void setupType1() {
         binding.stagesNextButton.setVisibility(View.VISIBLE);
+        binding.stagesNextButton.setText(R.string.next);
+        binding.stagesProgressBar.setVisibility(View.GONE);
+    }
+
+    private void setupFinalStage() {
+        binding.stagesNextButton.setVisibility(View.VISIBLE);
+        binding.stagesNextButton.setText(R.string.finish);
+        binding.stagesProgressBar.setVisibility(View.GONE);
+        binding.stagesImageView.setImageDrawable(null);
+        binding.stagesReadyTextView.setVisibility(View.GONE);
+        binding.stagesTitleTextView.setText(getString(R.string.congratulations));
+
+        binding.stagesNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void nextStage() {
-        if(isBreakStage) {
-            setupStage();
-        } else {
-            currentStageIndex++;
-            setupStage();
-
-        }
+        currentStageIndex++;
+        setupStage();
     }
 }

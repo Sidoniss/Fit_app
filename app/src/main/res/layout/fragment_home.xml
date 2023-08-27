@@ -21,7 +21,7 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical">
 
             <ImageButton
@@ -39,7 +39,7 @@
                 android:id="@+id/legsImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:contentDescription="Legs"
                 android:src="@drawable/legs"
@@ -52,7 +52,7 @@
                 android:id="@+id/bellyImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:contentDescription="Belly"
                 android:src="@drawable/belly"
@@ -64,7 +64,7 @@
                 android:id="@+id/cardioImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:contentDescription="Cardio"
                 android:src="@drawable/cardio"
@@ -72,17 +72,7 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
 
-            <ImageButton
-                android:id="@+id/videoImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:contentDescription="Video"
-                android:src="@drawable/video"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
+
         </LinearLayout>
 
 </LinearLayout>

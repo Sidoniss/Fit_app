@@ -34,6 +34,10 @@ public class TokenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         binding = ActivityTokenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

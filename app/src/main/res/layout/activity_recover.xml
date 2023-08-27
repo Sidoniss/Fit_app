@@ -17,9 +17,11 @@
 
     <TextView
         android:id="@+id/recoverTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/enter_email_to_send"
+        android:gravity="center"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/recoverNextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,8 +29,8 @@
 
     <EditText
         android:id="@+id/emailToChangePasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:inputType="text"
         android:hint="@string/prompt_email"
@@ -39,9 +41,10 @@
 
     <Button
         android:id="@+id/recoverNextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:text="@string/next"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

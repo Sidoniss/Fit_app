@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Fit_app_bachelor</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Trainings</string>
+    <string name="title_dashboard">Recipes</string>
+    <string name="title_notifications">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -10,6 +10,7 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome! "</string>
     <string name="invalid_username">Not a valid email</string>
+    <string name="checkbox_error">You must accept the privacy policy</string>
     <string name="invalid_name">Name must be >2 characters</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
@@ -20,13 +21,20 @@
     <string name="next">Next</string>
     <string name="name">name</string>
     <string name="registration">Registration</string>
-    <string name="privacy_policy">I accept the terms of the privacy policy.</string>
+    <string name="privacy_policy">I accept the terms of the <a href="https://drive.google.com/file/d/1RTY2mLuDNeWGHOA3dhXYi9lE1Phopte5/view?usp=sharing">privacy policy</a></string>
     <string name="back">Back</string>
     <string name="new_password">New password</string>
     <string name="token">token</string>
     <string name="change_password">Change password</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="whats_train_today">Co dzisiaj trenujemy?</string>
-
+    <string name="whats_train_today">what are we training today?</string>
+    <string name="be_ready">get ready!</string>
+    <string name="ready">ready</string>
     <string name="underlined_email"><u>Email</u></string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="finish">finish</string>
+    <string name="filters">filters</string>
+    <string name="enter_email_to_send">Enter email to send recover token</string>
+    <string name="enter_password_and_token">Enter new password and token to change old password</string>
+    <string name="search">Search</string>
 </resources>

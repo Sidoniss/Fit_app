@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <PreferenceCategory app:title="Settings">
+    <PreferenceCategory
+        app:title="Settings"
+        app:layout="@layout/preference_category_custom">
         <Preference
             app:key="infoButton"
             app:title="Account information"

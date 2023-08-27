@@ -1,6 +1,7 @@
 package com.example.fit_app_bachelor.login.Service;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -26,26 +27,16 @@ import retrofit2.Response;
 public class LoginDataSource {
     private ApiService apiService;
     private UserManager userManager;
-    private MutableLiveData<Result<User>> loginResultMutableLiveData;
-    private MutableLiveData<Result<String>> registerResultMutableLiveData;
-    private MutableLiveData<Result<String>> emailResultMutableLiveData;
-    private MutableLiveData<Result<String>> resetResultMutableLiveData;
-    private MutableLiveData<Result<String>> changePasswordMutableLiveData;
     private PreferencesHelper preferencesHelper;
 
     public LoginDataSource(ApiService apiService, UserManager userManager) {
         this.apiService = apiService;
-        this.loginResultMutableLiveData = new MutableLiveData<>();
-        this.registerResultMutableLiveData = new MutableLiveData<>();
-        this.emailResultMutableLiveData = new MutableLiveData<>();
-        this.resetResultMutableLiveData = new MutableLiveData<>();
-        this.changePasswordMutableLiveData = new MutableLiveData<>();
         this.preferencesHelper = PreferencesHelper.getInstance();
         this.userManager = userManager;
     }
 
     public LiveData<Result<User>> login(String username, String password) {
-
+        MutableLiveData<Result<User>> loginResultMutableLiveData = new MutableLiveData<>();
         LoginRequest request = new LoginRequest(username,password);
 
         Call<LoginResponse> call = apiService.login(request);
@@ -78,7 +69,7 @@ public class LoginDataSource {
     }
 
     public LiveData<Result<String>> register(String username, String password, String name) {
-
+        MutableLiveData<Result<String>> registerResultMutableLiveData = new MutableLiveData<>();
         RegisterRequest request = new RegisterRequest(username,password,name);
 
         Call<Void> call = apiService.register(request);
@@ -86,6 +77,7 @@ public class LoginDataSource {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("RegisterAPI", "Response code: " + response.code());
                 if(response.isSuccessful()) {
                     registerResultMutableLiveData.postValue(new Result.Success<>("Register successful."));
                 } else {
@@ -103,6 +95,7 @@ public class LoginDataSource {
     }
 
     public LiveData<Result<String>> sendEmail(String email) {
+        MutableLiveData<Result<String>> emailResultMutableLiveData = new MutableLiveData<>();
         RecoverRequest request = new RecoverRequest(email);
 
         Call<Void> call = apiService.sendEmailWithToken(request);
@@ -127,6 +120,7 @@ public class LoginDataSource {
     }
 
     public LiveData<Result<String>> resetPassword(String newPassword,String token) {
+        MutableLiveData<Result<String>> resetResultMutableLiveData = new MutableLiveData<>();
         ResetRequest request = new ResetRequest(newPassword,token);
 
 
@@ -152,6 +146,7 @@ public class LoginDataSource {
     }
 
     public LiveData<Result<String>> changePassword(String email,String oldPassword,String newPassword) {
+        MutableLiveData<Result<String>> changePasswordMutableLiveData = new MutableLiveData<>();
         ChangePasswordRequest request = new ChangePasswordRequest(email, oldPassword, newPassword);
 
         Call<Void> call = apiService.changePassword(request);

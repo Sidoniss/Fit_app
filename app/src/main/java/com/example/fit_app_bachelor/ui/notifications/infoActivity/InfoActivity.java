@@ -16,10 +16,13 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         TextView emailTextView = findViewById(R.id.infoEmail);
         TextView nameTextView = findViewById(R.id.infoName);
         TextView dateTextView = findViewById(R.id.infoDate);
-        TextView backTextView = findViewById(R.id.infoBack);
 
         new Thread(() -> {
             User user = UserDatabase.getInstance(InfoActivity.this).userDAO().getUser();

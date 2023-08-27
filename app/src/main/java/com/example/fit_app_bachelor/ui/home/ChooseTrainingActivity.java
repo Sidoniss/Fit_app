@@ -26,6 +26,10 @@ public class ChooseTrainingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         TrainingDatabase db = TrainingDatabase.getInstance(this);
         viewModel = new ViewModelProvider(this,new CategoryViewModel.Factory(db.trainingDAO()))
                 .get(CategoryViewModel.class);

@@ -9,12 +9,15 @@ public class RegisterFormState {
     private Integer passwordError;
     @Nullable
     private Integer nameError;
+    @Nullable
+    private Integer checkboxError;
     private boolean isDataValid;
 
-    RegisterFormState(@Nullable Integer usernameError, @Nullable Integer passwordError, @Nullable Integer nameError) {
+    RegisterFormState(@Nullable Integer usernameError, @Nullable Integer passwordError, @Nullable Integer nameError,@Nullable Integer checkboxError) {
         this.usernameError = usernameError;
         this.passwordError = passwordError;
         this.nameError = nameError;
+        this.checkboxError = checkboxError;
         this.isDataValid = false;
     }
 
@@ -22,6 +25,7 @@ public class RegisterFormState {
         this.usernameError = null;
         this.passwordError = null;
         this.nameError = null;
+        this.checkboxError = null;
         this.isDataValid = isDataValid;
     }
 
@@ -38,6 +42,11 @@ public class RegisterFormState {
     @Nullable
     public Integer getNameError() {
         return nameError;
+    }
+
+    @Nullable
+    public Integer getCheckboxError() {
+        return checkboxError;
     }
 
     boolean isDataValid() {

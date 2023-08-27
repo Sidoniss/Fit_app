@@ -29,12 +29,10 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.trainingTextView;
         final ImageButton armImageButton = binding.armImageButton;
         final ImageButton legsImageButton = binding.legsImageButton;
         final ImageButton bellyImageButton = binding.bellyImageButton;
         final ImageButton cardioImageButton = binding.cardioImageButton;
-        final ImageButton videoImageButton = binding.videoImageButton;
 
 
 
@@ -70,15 +68,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ChooseTrainingActivity.class);
                 intent.putExtra("category",4);
-                startActivity(intent);
-            }
-        });
-
-        videoImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ChooseTrainingActivity.class);
-                intent.putExtra("category",5);
                 startActivity(intent);
             }
         });

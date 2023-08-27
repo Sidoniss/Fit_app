@@ -30,6 +30,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         binding = ActivityChangePasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -42,7 +46,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this,factory).get(ChangePasswordViewModel.class);
 
-        TextView backTextView = binding.ChangePasswordBackTextView;
         EditText oldPasswordEditText = binding.ChangePasswordOldPassword;
         EditText newPasswordEditText = binding.ChangePasswordNewPassword;
         EditText confirmNewPasswordEditText = binding.ChangePasswordConfirmNewPassword;
@@ -51,6 +54,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         viewModel.getChangePasswordResult().observe(ChangePasswordActivity.this,result -> {
             if(result instanceof Result.Success) {
                 Toast.makeText(ChangePasswordActivity.this,"Zmiana hasła udana!",Toast.LENGTH_SHORT).show();
+                finish();
             } else if (result instanceof Result.Error) {
                 Toast.makeText(ChangePasswordActivity.this,"Błąd zmiany hasła!",Toast.LENGTH_SHORT).show();
             }

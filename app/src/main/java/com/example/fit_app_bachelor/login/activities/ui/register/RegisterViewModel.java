@@ -1,5 +1,6 @@
 package com.example.fit_app_bachelor.login.activities.ui.register;
 
+import android.util.Log;
 import android.util.Patterns;
 
 import androidx.lifecycle.LiveData;
@@ -26,22 +27,27 @@ public class RegisterViewModel extends ViewModel {
 
     public void register(String username,String password,String name) {
         loginRepository.register(username,password,name).observeForever(result -> {
+            Log.d("RegisterViewModel", "succes: " + result);
+
             if (result instanceof Result.Success) {
                 String data = ((Result.Success<String>) result).getData();
-                registerResult.setValue(new RegisterResult("Register success!"));
+                registerResult.setValue(new RegisterResult(new RegisterInUserView(data)));
             } else {
                 registerResult.setValue(new RegisterResult(R.string.register_failed));
             }
         });
     }
 
-    public void registerDataChanged(String username, String password,String name) {
+    public void registerDataChanged(String username, String password,String name,boolean isCheckboxChecked) {
         if (!isUserNameValid(username)) {
-            registerFormState.setValue(new RegisterFormState(R.string.invalid_username, null,null));
+            registerFormState.setValue(new RegisterFormState(R.string.invalid_username, null, null,null));
         } else if (!isPasswordValid(password)) {
-            registerFormState.setValue(new RegisterFormState(null, R.string.invalid_password,null));
+            registerFormState.setValue(new RegisterFormState(null, R.string.invalid_password, null,null));
         } else if (!isNameValid(name)) {
-            registerFormState.setValue(new RegisterFormState(null,null,R.string.invalid_name));
+            registerFormState.setValue(new RegisterFormState(null, null, R.string.invalid_name,null));
+        } else if (!isCheckboxChecked) {
+
+            registerFormState.setValue(new RegisterFormState(null, null, null, R.string.checkbox_error));
         } else {
             registerFormState.setValue(new RegisterFormState(true));
         }
@@ -51,11 +57,7 @@ public class RegisterViewModel extends ViewModel {
         if (username == null) {
             return false;
         }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
+        return Patterns.EMAIL_ADDRESS.matcher(username).matches();
     }
 
     private boolean isPasswordValid(String password) {

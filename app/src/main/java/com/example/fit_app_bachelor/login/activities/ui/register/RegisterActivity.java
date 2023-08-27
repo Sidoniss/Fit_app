@@ -3,6 +3,7 @@ package com.example.fit_app_bachelor.login.activities.ui.register;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -10,11 +11,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -40,6 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -54,6 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.PasswordEditText;
         final EditText nameEditText = binding.nameEditText;
         final Button registerButton = binding.registerButton;
+        final CheckBox agreementCheckBox = binding.privacyPolicyCheckbox;
+        agreementCheckBox.setMovementMethod(LinkMovementMethod.getInstance());
         final ProgressBar loadingProgressBar = binding.progressBar;
         final TextView backTextView = binding.backTextView;
 
@@ -74,21 +86,43 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        agreementCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                registerViewModel.registerDataChanged(
+                        usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        nameEditText.getText().toString(),
+                        isChecked  // Dodajemy stan checkboxa jako nowy argument.
+                );
+            }
+        });
+
         registerViewModel.getRegisterResult().observe(this, new Observer<RegisterResult>() {
             @Override
             public void onChanged(@Nullable RegisterResult registerResult) {
+                Log.d("RegisterActiv", "Observer triggered: " + registerResult);
+
                 if (registerResult == null) {
+                    Log.d("RegisterActiv", "Result is null");
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
+                Log.d("RegisterActiv", "Checking for error...");
                 if (registerResult.getError() != null) {
+                    Log.d("RegisterActiv", "Error found: " + registerResult.getError());
                     showRegisterFailed(registerResult.getError());
                 }
+                Log.d("RegisterActiv", "Checking for success...");
                 if (registerResult.getSuccess() != null) {
-                    updateUiWithUser(registerResult.getSuccess());
+                    Log.d("RegisterActiv", "success: " + registerResult.getSuccess().getDisplayName());
+                    RegisterInUserView registeredUser = new RegisterInUserView(registerResult.getSuccess().getDisplayName());
+                    updateUiWithUser(registeredUser);
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
+                } else {
+                    Log.d("RegisterActiv", "No success found.");
                 }
                 setResult(Activity.RESULT_OK);
             }
@@ -107,8 +141,12 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                registerViewModel.registerDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString(),nameEditText.getText().toString());
+                registerViewModel.registerDataChanged(
+                        usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        nameEditText.getText().toString(),
+                        agreementCheckBox.isChecked()
+                );
             }
         };
 
@@ -147,11 +185,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void updateUiWithUser(RegisterInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
-        // Uruchom MainActivity
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
 
