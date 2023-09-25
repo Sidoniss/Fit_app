@@ -50,7 +50,6 @@ public class RecoverActivity extends AppCompatActivity {
 
         EditText emailEditText = binding.emailToChangePasswordEditText;
         Button nextButton = binding.recoverNextButton;
-        TextView backTextView = binding.recoverBackTextView;
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,15 +69,6 @@ public class RecoverActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RecoverActivity.this, "Invalid email", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        backTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RecoverActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }

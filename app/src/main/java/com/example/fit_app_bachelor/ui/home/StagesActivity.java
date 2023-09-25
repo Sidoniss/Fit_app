@@ -44,10 +44,8 @@ public class StagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (currentStageIndex < stageList.size() && stageList.get(currentStageIndex).getType() == 0) {
-                    // Jeśli jesteśmy na etapie typu 0, przejdź do kolejnego etapu po kliknięciu w "Ready"
                     setupType0(stageList.get(currentStageIndex).getTime());
                 } else {
-                    // Dla wszystkich innych etapów, po prostu przejdź do kolejnego etapu
                     nextStage();
                 }
             }

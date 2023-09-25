@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         final CheckBox agreementCheckBox = binding.privacyPolicyCheckbox;
         agreementCheckBox.setMovementMethod(LinkMovementMethod.getInstance());
         final ProgressBar loadingProgressBar = binding.progressBar;
-        final TextView backTextView = binding.backTextView;
+
 
         registerViewModel.getRegisterFormState().observe(this, new Observer<RegisterFormState>() {
             @Override
@@ -101,28 +101,20 @@ public class RegisterActivity extends AppCompatActivity {
         registerViewModel.getRegisterResult().observe(this, new Observer<RegisterResult>() {
             @Override
             public void onChanged(@Nullable RegisterResult registerResult) {
-                Log.d("RegisterActiv", "Observer triggered: " + registerResult);
 
                 if (registerResult == null) {
-                    Log.d("RegisterActiv", "Result is null");
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
-                Log.d("RegisterActiv", "Checking for error...");
                 if (registerResult.getError() != null) {
-                    Log.d("RegisterActiv", "Error found: " + registerResult.getError());
                     showRegisterFailed(registerResult.getError());
                 }
-                Log.d("RegisterActiv", "Checking for success...");
                 if (registerResult.getSuccess() != null) {
-                    Log.d("RegisterActiv", "success: " + registerResult.getSuccess().getDisplayName());
                     RegisterInUserView registeredUser = new RegisterInUserView(registerResult.getSuccess().getDisplayName());
                     updateUiWithUser(registeredUser);
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-                } else {
-                    Log.d("RegisterActiv", "No success found.");
                 }
                 setResult(Activity.RESULT_OK);
             }
@@ -174,15 +166,6 @@ public class RegisterActivity extends AppCompatActivity {
                         passwordEditText.getText().toString(),nameEditText.getText().toString());
             }
         });
-
-        backTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
 
@@ -194,7 +177,6 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
 
-        // Zakończ LoginActivity
         finish();
     }
 

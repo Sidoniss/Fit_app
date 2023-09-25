@@ -1,9 +1,7 @@
 package com.example.fit_app_bachelor.ui.dashboard.service;
 
 import android.content.Context;
-import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -22,7 +20,6 @@ import java.util.concurrent.Executors;
 @TypeConverters({Converters.class})
 public abstract class RecipeDatabase extends RoomDatabase {
     private static RecipeDatabase instance;
-    private final MutableLiveData<Boolean> mLsDatabaseCreated = new MutableLiveData<>();
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     public abstract RecipeDAO recipeDAO();
@@ -31,7 +28,6 @@ public abstract class RecipeDatabase extends RoomDatabase {
         if (instance ==null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     RecipeDatabase.class,"recipesDatabase.db")
-                    //.fallbackToDestructiveMigration()
                     .addCallback(new RoomDatabase.Callback() {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {

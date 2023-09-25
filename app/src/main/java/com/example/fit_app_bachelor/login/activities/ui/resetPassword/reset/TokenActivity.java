@@ -50,7 +50,6 @@ public class TokenActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this,factory).get(TokenViewModel.class);
 
-        TextView backTextView = binding.tokenBackButton;
         Button resetPasswordButton = binding.ResetPasswordButton;
         EditText newPasswordEditText = binding.newPasswordEditText;
         EditText tokenEditText = binding.tokenEditText;
@@ -77,16 +76,5 @@ public class TokenActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        backTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TokenActivity.this, RecoverActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 }

@@ -105,7 +105,7 @@ public class TrainingsAdapter extends RecyclerView.Adapter<TrainingsAdapter.Trai
                     break;
 
             }
-            stagesSizeTextView.setText(String.valueOf(Optional.ofNullable(training.getStageList()).map(List::size).orElse(0)));
+            stagesSizeTextView.setText(String.valueOf("Stages: " + Optional.ofNullable(training.getStageList()).map(List::size).orElse(0)));
         }
 
         @Override
