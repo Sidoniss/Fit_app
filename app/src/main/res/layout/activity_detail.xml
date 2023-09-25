@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DetailActivity">
+    tools:context=".ui.recipes.DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                     app:cardCornerRadius="10dp"
                     app:cardUseCompatPadding="true">
 
-                    <com.example.fit_app_bachelor.ui.dashboard.service.NonScrollingRecyclerView
+                    <com.example.fit_app_bachelor.ui.recipes.service.NonScrollingRecyclerView
                         android:id="@+id/ingredients_recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
